@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form validation in js</title>
+
+<style>
+    body{
+        background-color:rgb(39, 39, 133);
+    
+    }
+    .nav-bar a {
+    text-decoration: none;
+    color: white;
+    padding: 14px 20px;
+    display: inline-block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    margin-left:40px;
+
+ }
+ .nav-bar a:hover {
+    border-bottom: 1px  solid white ;
+    color: rgb(255, 230, 0);
+ }
+    #main-div{
+        width: 1370px;
+        height:500px;
+        background-color:rgb(39, 39, 133);
+        margin-left: 40px;
+        
+    }
+    .heading{
+         margin-left: 40px;
+        color: white;
+         font-family: Arial, Helvetica, sans-serif;
+        
+    }
+    #form{
+    width: 200px;
+   
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left:50px;
+    color: white;
+    
+    
+
+    }
+   
+   
+    .submit{
+        margin-left: -50px;
+        width: 300px;
+        height: 50px;
+        background-color: goldenrod;
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        float: left;
+
+}
+#iubimage{
+   margin-left: 130px;
+   margin-top: -500px;
+   float: left;
+   width: 850px;
+   height:500px;
+   background-color: red;
+}
+.image{
+   width: 850px;
+   height:500px;
+}
+</style>
+</head>
+<body>
+    <div class="nav-bar">
+      <a href="iubhomepage1.html">Home</a>
+       <a href="iubaboutpage2.html">About</a>
+        <a href="iubcontactpage3.html">Contact</a>
+        </div>
+       
+<div id="main-div"> 
+    <h1 class="heading">Sign Up to IUB E-Portal</h1>
+        <p class="heading">We need some details to create your Account</p>  
+
+
+<form  id="form" name="myForm" onsubmit="return validateForm()">
+ Name:<input type="text" name="name"><br><br>
+ Father Name: <input type="text" name="fatherName"><br><br>
+ Email: <input type="text" name="email"><br><br>
+ Phone: <input type="text" name="phone"><br><br>
+ CNIC: <input type="text" name="cnic"><br><br>
+ Address: <input type="text" name="address"><br><br>
+ Password: <input type="password" name="password"><br><br>
+ Confirm Password: <input type="password" name="confirmPassword"><br><br>
+ Gender: <select name="gender">
+              <option value="">Select</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+           </select><br><br><br>
+ <input type="submit" class="submit" value="Register Now">
+</form>
+
+
+ </div>
+ <div id="iubimage"> <img src="images/pic7.PNG" alt="..."  class="image">
+</div> 
+
+  
+<script>
+function validateForm() {
+ 
+    var name = document.forms["myForm"]["name"].value;
+ var fatherName = document.forms["myForm"]["fatherName"].value;
+ var email = document.forms["myForm"]["email"].value;
+ var phone = document.forms["myForm"]["phone"].value;
+ var cnic = document.forms["myForm"]["cnic"].value;
+ var address = document.forms["myForm"]["address"].value;
+ var password = document.forms["myForm"]["password"].value;
+ var confirmPassword = document.forms["myForm"]["confirmPassword"].value;
+ var gender = document.forms["myForm"]["gender"].value;
+
+ if (name == "" || fatherName == "" || email == "" || phone == "" || cnic == "" || address == "" || password == "" || confirmPassword == "" || gender == "") {
+    alert("All fields must be filled out");
+    return false;
+ }
+
+ if (password != confirmPassword) {
+    alert("Passwords do not match");
+    return false;
+ }
+
+ var emailPattern = /\S+@\S+\.\S+/;
+ if (!emailPattern.test(email)) {
+    alert("Invalid email format");
+    return false;
+ }
+
+ var phonePattern = /^[0-9]{11}$/;
+ if (!phonePattern.test(phone)) {
+    alert("Invalid phone number");
+    return false;
+ }
+
+ var cnicPattern = /^[0-9]{13}$/;
+ if (!cnicPattern.test(cnic)) {
+    alert("Invalid CNIC number");
+    return false;
+ }
+
+ if (password.length < 8) {
+    alert("Password must be at least 8 characters long");
+    return false;
+ }
+
+ if (password.includes(name) || password.includes(fatherName) || password.includes(email) || password.includes(phone) || password.includes(cnic) || password.includes(address)) {
+    alert("Password cannot contain any personal information");
+    return false;
+ }
+
+ return true;
+}
+</script>
+
+</body>
+</html>
